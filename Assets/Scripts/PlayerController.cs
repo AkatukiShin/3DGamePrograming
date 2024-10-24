@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpPower = 30;
 
     private Rigidbody rigidbody;
+    private Animator animator;
 
     private bool isWalk;
     private bool isDash;
@@ -22,13 +23,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         Move();
-        Jump();
-
+        RotatePlayer();
     }
 
     void Move()
@@ -51,6 +52,33 @@ public class PlayerController : MonoBehaviour
             rigidbody.AddForce(new Vector2(0, jumpPower), ForceMode.Impulse);
         }
     }
+    
+    void RotatePlayer()
+    {
+        // 右向き (inputValueが1)
+        if (inputValue == 1)
+        {
+            // プレイヤーが左向きの場合（y軸の回転が180度に近い場合）
+            if (Mathf.Abs(transform.eulerAngles.y - 180f) > 0.1f) // 180度との差を比較
+            {
+                // 右向きに回転させる
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+
+        // 左向き (inputValueが-1)
+        if (inputValue == -1)
+        {
+            // プレイヤーが右向きの場合（y軸の回転が0度に近い場合）
+            if (Mathf.Abs(transform.eulerAngles.y - 0f) > 0.1f) // 0度との差を比較
+            {
+                // 左向きに回転させる
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+    }
+
+
 
     private void OnCollisionEnter(Collision other)
     {
