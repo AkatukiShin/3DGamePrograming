@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float walkSpeed = 30;
     [SerializeField] float dashSpeed = 50;
     [SerializeField] float jumpPower = 30;
+    [SerializeField] float rotateSpeed = 100; // 回転速度を設定
 
-    private Rigidbody rigidbody;
+    private Rigidbody PLrigidbody;
     private Animator animator;
+    private Vector3 currentRotateForward = Vector3.right; // 初期向きの設定を追加（右向き）
 
     private bool isWalk;
     private bool isDash;
@@ -22,85 +24,77 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        PLrigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         Move();
-        RotatePlayer();
+        RotatePlayer(); // 振り向き処理を追加
     }
 
     void Move()
     {
         if (isDash && isWalk)
         {
-            rigidbody.AddForce(new Vector2(dashSpeed * inputValue, 0));
+            PLrigidbody.AddForce(new Vector2(dashSpeed * inputValue, 0));
         }
         else if (isWalk)
         {
-            rigidbody.AddForce(new Vector2(walkSpeed * inputValue, 0));
+            PLrigidbody.AddForce(new Vector2(walkSpeed * inputValue, 0));
         }
+    }
+
+    void RotatePlayer()
+    {
+        // 入力に応じてプレイヤーのターゲット向きを設定
+        if (inputValue > 0)
+        {
+            currentRotateForward = Vector3.right; // 右向き
+        }
+        else if (inputValue < 0)
+        {
+            currentRotateForward = Vector3.left; // 左向き
+        }
+
+        // ターゲット方向に向けて滑らかに回転
+        Quaternion targetRotation = Quaternion.LookRotation(currentRotateForward);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 
     void Jump()
     {
-        if(canJump)
+        if (canJump)
         {
             canJump = false;
-            rigidbody.AddForce(new Vector2(0, jumpPower), ForceMode.Impulse);
+            PLrigidbody.AddForce(new Vector2(0, jumpPower), ForceMode.Impulse);
         }
     }
-    
-    void RotatePlayer()
-    {
-        // 右向き (inputValueが1)
-        if (inputValue == 1)
-        {
-            // プレイヤーが左向きの場合（y軸の回転が180度に近い場合）
-            if (Mathf.Abs(transform.eulerAngles.y - 180f) > 0.1f) // 180度との差を比較
-            {
-                // 右向きに回転させる
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
-
-        // 左向き (inputValueが-1)
-        if (inputValue == -1)
-        {
-            // プレイヤーが右向きの場合（y軸の回転が0度に近い場合）
-            if (Mathf.Abs(transform.eulerAngles.y - 0f) > 0.1f) // 0度との差を比較
-            {
-                // 左向きに回転させる
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
-        }
-    }
-
-
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))
         {
             canJump = true;
         }
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         inputValue = context.ReadValue<Vector2>().x;
-        if(context.performed) isWalk = true;
-        if(context.canceled)  isWalk = false;
+        if (context.performed) isWalk = true;
+        if (context.canceled) isWalk = false;
     }
     
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.performed) isDash = true;
-        if(context.canceled)  isDash = false;
+        if (context.performed) isDash = true;
+        if (context.canceled) isDash = false;
     }
+    
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.performed) Jump();
+        if (context.performed) Jump();
     }
 }
