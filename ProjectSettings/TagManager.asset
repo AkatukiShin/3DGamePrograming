@@ -5,6 +5,21 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - PowerUpItem
+  - DeadLine
+  - Enemy
+  - ItemBox
+  - Head
+  - Foot
+  - InCheck
+  - OutCheck
+  - Object
+  - CanBreakBox
+  - Killer
+  - Coin
+  - Pipe
+  - FlowerItem
+  - PipeHead
   layers:
   - Default
   - TransparentFX
