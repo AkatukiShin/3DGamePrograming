@@ -75,6 +75,7 @@ public class MoveComponent : MonoBehaviour
     public void OnDush(InputAction.CallbackContext context)
     {
         if (context.performed) isDash = true;
+       
         if (context.canceled) isDash = false;
     }
     

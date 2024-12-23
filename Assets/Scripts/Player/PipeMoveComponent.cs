@@ -20,7 +20,13 @@ public class PipeMoveComponent : MonoBehaviour
 
     void SceneLoader()
     {
+        GameObject gameoverManger = GameObject.Find("GameOverManager");
+        GameObject canvas = GameObject.Find("Canvas");
+
+        DontDestroyOnLoad(gameoverManger);
+        DontDestroyOnLoad(canvas);
         DontDestroyOnLoad(this.gameObject);
+
         SceneManager.LoadScene(1);
     }
     

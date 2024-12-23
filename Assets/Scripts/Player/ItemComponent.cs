@@ -36,10 +36,18 @@ public class ItemComponent : MonoBehaviour
                 PowerUp(other.gameObject);
             }
         }
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
         if (other.gameObject.CompareTag("FlowerItem"))
         {
             flowerItemManager.FlowerCheck(other.gameObject);
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
             Destroy(other.gameObject);
         }
     }

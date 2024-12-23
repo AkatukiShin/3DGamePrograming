@@ -12,6 +12,8 @@ public class CanBreakBox : MonoBehaviour
     [SerializeField] private Material hittedColor;
 
     private bool isHit = false;
+    private FlowerItemManager flowerItemManager;
+
     private void Awake()
     {
         instance = this;
@@ -19,7 +21,7 @@ public class CanBreakBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("CanBreakBox") && !isHit)
+        if (other.gameObject.CompareTag("Head") && !isHit)
         {
             HitPlayer();
         }
@@ -30,7 +32,18 @@ public class CanBreakBox : MonoBehaviour
         if(item == null) Destroy(this.gameObject);
         else
         {
-            Instantiate(item, itemPos.transform.position, Quaternion.identity);
+            if(item.CompareTag("FlowerItem"))
+            {
+                GameObject obj = GameObject.Find("FlowerItemManager");
+                flowerItemManager = obj.GetComponent<FlowerItemManager>();
+                flowerItemManager.FlowerCheck(item.gameObject);
+                Destroy(item.gameObject);
+            }
+            else
+            {
+                Instantiate(item, itemPos.transform.position, Quaternion.identity);
+            }
+            
             isHit = true;
         }
         GetComponent<MeshRenderer>().material = hittedColor;

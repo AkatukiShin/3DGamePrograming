@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1297,7 +1297,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 517589504}
         m_TargetAssemblyTypeName: MoveComponent, Assembly-CSharp
-        m_MethodName: OnDash
+        m_MethodName: OnDush
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 12
-  dashSpeed: 30
+  dashSpeed: 24
   jumpPower: 8
   rotateSpeed: 500
 --- !u!114 &517589505
@@ -1593,9 +1593,17 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3869256275722400301, guid: a5da4960a1ad848d0a791c0254a92c79, type: 3}
+    - target: {fileID: 2761507702206537157, guid: a5da4960a1ad848d0a791c0254a92c79, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761507702206537157, guid: a5da4960a1ad848d0a791c0254a92c79, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869256275722400301, guid: a5da4960a1ad848d0a791c0254a92c79, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5653882878522255729, guid: a5da4960a1ad848d0a791c0254a92c79, type: 3}
       propertyPath: m_Name
@@ -2648,7 +2656,6 @@ GameObject:
   - component: {fileID: 987729566}
   - component: {fileID: 987729565}
   - component: {fileID: 987729564}
-  - component: {fileID: 987729568}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2739,18 +2746,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &987729568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987729563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fccb9e294eacb41b7ae08e08ce381926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1026996237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3038,7 +3033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885656276919540366, guid: 1ed375cd3f51141c4b69a244c32fd38f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.177885
+      value: -39.64
       objectReference: {fileID: 0}
     - target: {fileID: 5885656276919540366, guid: 1ed375cd3f51141c4b69a244c32fd38f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4502,7 +4497,7 @@ MonoBehaviour:
     PipeObject: {fileID: 699373679}
     MoveDirection: 1
     Coin: {fileID: 0}
-  - FlowerItem: {fileID: 1223190916}
+  - FlowerItem: {fileID: 0}
     PipeObject: {fileID: 638128864}
     MoveDirection: 2
     Coin: {fileID: 0}
@@ -4888,7 +4883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3259004660920611172, guid: 3e56fb2c3b81a4e43a5a68eb1ff55897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.55
+      value: -10.8
       objectReference: {fileID: 0}
     - target: {fileID: 3259004660920611172, guid: 3e56fb2c3b81a4e43a5a68eb1ff55897, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5087,11 +5082,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3259004660920611172, guid: 3e56fb2c3b81a4e43a5a68eb1ff55897, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.31
+      value: 3.298
       objectReference: {fileID: 0}
     - target: {fileID: 3259004660920611172, guid: 3e56fb2c3b81a4e43a5a68eb1ff55897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.55
+      value: -10.807
       objectReference: {fileID: 0}
     - target: {fileID: 3259004660920611172, guid: 3e56fb2c3b81a4e43a5a68eb1ff55897, type: 3}
       propertyPath: m_LocalPosition.z

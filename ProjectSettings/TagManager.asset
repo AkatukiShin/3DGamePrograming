@@ -20,6 +20,7 @@ TagManager:
   - Pipe
   - FlowerItem
   - PipeHead
+  - KillerPos
   layers:
   - Default
   - TransparentFX

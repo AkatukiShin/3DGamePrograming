@@ -19,7 +19,6 @@ public class GameOverManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void FixedUpdate()
