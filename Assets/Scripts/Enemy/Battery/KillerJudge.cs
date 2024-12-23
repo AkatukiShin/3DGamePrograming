@@ -9,7 +9,6 @@ public class KillerJudge : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("KillerPos"))
         {
-             
             if (other.gameObject.transform.childCount == 0)
             {
                 GameObject killerPrefab = Instantiate(killer, other.gameObject.transform.position, Quaternion.identity);
