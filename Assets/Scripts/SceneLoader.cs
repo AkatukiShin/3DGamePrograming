@@ -18,9 +18,11 @@ public class SceneLoader : MonoBehaviour
 
         GameObject gameoverManger = GameObject.Find("GameOverManager");
         GameObject canvas = GameObject.Find("Canvas");
+        GameObject uiManager = GameObject.Find("UiManager");
 
         SceneManager.MoveGameObjectToScene(gameoverManger,stage1);
         SceneManager.MoveGameObjectToScene(canvas,stage1);
+        SceneManager.MoveGameObjectToScene(uiManager,stage1);
         
         Invoke("GravityOn", 1.0f);
     }

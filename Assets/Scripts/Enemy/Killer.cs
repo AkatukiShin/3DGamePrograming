@@ -29,6 +29,7 @@ public class Killer : MonoBehaviour
     {
         if (state == 1)
         {
+            this.transform.parent = null;
             posDelta = player.transform.position - this.transform.position;
             this.transform.rotation = Quaternion.LookRotation(posDelta, Vector3.forward);
             time += Time.deltaTime;

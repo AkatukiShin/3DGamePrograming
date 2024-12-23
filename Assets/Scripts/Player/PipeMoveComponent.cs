@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PipeMoveComponent : MonoBehaviour
 {
     private bool canPipeIn;
+    [SerializeField] GameObject transition;
 
     void PipeIn()
     {
@@ -14,7 +16,9 @@ public class PipeMoveComponent : MonoBehaviour
         {
             Debug.Log("PipeIn!");
             this.gameObject.transform.DOMove(new Vector3(-8.6f, -7.5f, 0.1f), 1.0f);
-            Invoke("SceneLoader", 2.0f);
+            transition.gameObject.SetActive(true);
+            transition.transform.DOMove(new Vector3(-0.09f, -5.0f, -7.67f), 3.0f);
+            Invoke("SceneLoader", 4.0f);
         }
     }
 
@@ -22,9 +26,11 @@ public class PipeMoveComponent : MonoBehaviour
     {
         GameObject gameoverManger = GameObject.Find("GameOverManager");
         GameObject canvas = GameObject.Find("Canvas");
+        GameObject uiManager = GameObject.Find("UiManager");
 
         DontDestroyOnLoad(gameoverManger);
         DontDestroyOnLoad(canvas);
+        DontDestroyOnLoad(uiManager);
         DontDestroyOnLoad(this.gameObject);
 
         SceneManager.LoadScene(1);

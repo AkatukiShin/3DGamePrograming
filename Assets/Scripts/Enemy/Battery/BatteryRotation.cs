@@ -12,6 +12,6 @@ public class BatteryRotation : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        this.gameObject.transform.Rotate(new Vector3(0, 0, rotationSpeed));
+        this.gameObject.transform.Rotate(new Vector3(0, 0, -rotationSpeed));
     }
 }
